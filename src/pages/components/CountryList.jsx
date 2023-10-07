@@ -3,8 +3,10 @@ import styles from "./CountryList.module.css";
 import Spinner from "./Spinner";
 import CountyItem from "./CountryItem";
 import Message from "./Message";
+import {useCities} from "../../contexts/CitiesContext";
 
-const CountryList = ({cities, isLoading}) => {
+const CountryList = () => {
+  const {cities, isLoading} = useCities();
   if (isLoading) {
     return <Spinner />;
   }
@@ -17,6 +19,7 @@ const CountryList = ({cities, isLoading}) => {
     );
 
   const countries = cities.reduce((arr, city) => {
+    //*
     if (!arr.map((el) => el.country).includes(city.country))
       return [
         ...arr,
